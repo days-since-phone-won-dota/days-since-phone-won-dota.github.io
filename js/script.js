@@ -1,97 +1,56 @@
 const PHONE_PLAYER_ID = "80320987";
 
-class DotaStatsClient {
-    constructor(apiKey = null) {
-        this.baseURL = 'https://api.opendota.com/api';
-        this.apiKey = apiKey;
-        this.lastCall = Date.now();
-        this.callsPerMinute = 0;
-        this.cache = new Map();
-    }
+async function lastGamesWinLoss(number_of_games) {
+  try {
+    var response = await fetch(`https://api.opendota.com/api/players/${PHONE_PLAYER_ID}/wl?limit=${number_of_games}`);
+    result = await response.json();
+    return result;
+  } catch(error) {
+    console.log(error);
+  }
+}
 
-    async #delayIfNecessary() {
-        const now = Date.now();
-        if (now - this.lastCall < 1000) { // 1 second delay
-            await new Promise(resolve => setTimeout(resolve, 1000 - (now - this.lastCall)));
-        }
-        this.lastCall = Date.now();
-        this.callsPerMinute++;
-    }
+async function winLastGame() {
+  lastGameResult = await lastGamesWinLoss(1);
+  if (lastGameResult.win == 1) {
+    return true;
+  }
+  return false;
+}
 
-    async #fetchWithRetry(url) {
-        try {
-            await this.#delayIfNecessary();
-            const response = await fetch(`${url}${this.apiKey ? `?key=${this.apiKey}` : ''}`);
-            const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(`API error: ${data.error || 'Unknown error'}`);
-            }
-            
-            return data;
-        } catch (error) {
-            console.error('API fetch error:', error);
-            throw error;
-        }
+async function numberOfGamesSinceLastWin() {
+  number_of_games = 1;
+  hard_limit = 20;
+  for (i=number_of_games; i<=hard_limit; i++) {
+    var res = await lastGamesWinLoss(i);
+    if (res.win == 1) {
+      return i;
     }
+  }
+  return false;
+}
 
-    async getLastWinStats(playerID) {
-        try {
-            // Check cache first
-            const cacheKey = `lastWinStats_${playerID}`;
-            if (this.cache.has(cacheKey)) {
-                const cached = this.cache.get(cacheKey);
-                if (Date.now() - cached.timestamp < 3600000) { // 1 hour cache
-                    return cached.data;
-                }
-            }
+async function lastWonGameDetails() {
+  var number_of_games_since_last_win = await numberOfGamesSinceLastWin();
+  if (number_of_games_since_last_win) {
+    var response = await fetch(`https://api.opendota.com/api/players/${PHONE_PLAYER_ID}/matches?limit=${number_of_games_since_last_win}`)
+    var json_body = await response.json();
+    var last_won_game_details = await json_body.slice(-1);
+    return last_won_game_details[0];
+  }
+  return false
+}
 
-            // Get recent matches
-            const recentMatches = await this.#fetchWithRetry(
-                `${this.baseURL}/players/${playerID}/matches?limit=100`
-            );
-            
-            // Find most recent win
-            const lastWin = recentMatches.find(match => match.radiant_win === true);
-            
-            if (!lastWin) {
-                return {
-                    daysSinceLastWin: null,
-                    gamesSinceLastWin: null,
-                    error: 'No wins found in recent matches'
-                };
-            }
-            
-            // Get detailed match data
-            const winMatch = await this.#fetchWithRetry(
-                `${this.baseURL}/matches/${lastWin.match_id}`
-            );
-            
-            // Calculate days since last win
-            const daysSinceLastWin = Math.floor(
-                (Date.now() - winMatch.start_time * 1000) / (1000 * 60 * 60 * 24)
-            );
-            
-            // Get all matches
-            const allMatches = await this.#fetchWithRetry(
-                `${this.baseURL}/players/${playerID}/matches`
-            );
-            
-            // Count games since last win
-            const gamesSinceLastWin = allMatches.filter(
-                match => match.match_id > lastWin.match_id
-            ).length;
-            
-            // Cache result
-            this.cache.set(cacheKey, {
-                timestamp: Date.now(),
-                data: { daysSinceLastWin, gamesSinceLastWin }
-            });
-            
-            return { daysSinceLastWin, gamesSinceLastWin };
-        } catch (error) {
-            console.error('Error getting last win stats:', error);
-            throw error;
-        }
-    }
+async function lastXGamesNumberOfWins(number_of_games) {
+  var lastXGamesResults = await lastGamesWinLoss(number_of_games);
+  var number_of_wins = lastXGamesResults.win;
+  return number_of_wins;
+}
+
+async function hoursSinceLastWin() {
+  current_time = Date.now() / 1000;
+  last_won_game_details = await lastWonGameDetails();
+  last_won_game_start_time = await last_won_game_details.start_time;
+  last_won_game_duration = await last_won_game_details.duration;
+  return Math.round((current_time - last_won_game_start_time + last_won_game_duration) / 3600);
 }
