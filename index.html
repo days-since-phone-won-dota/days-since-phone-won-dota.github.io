@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Phone's Latest Dota Stats</title>
+  <title>Phone's Latest Dota Stats</title>
 </head>
 <body>
-    <div id="stats-container">
-        <!-- Stats will be displayed here -->
-        <h2>Phone's Latest Dota 2 Stats</h2>
-        <div id="games-since-last-win"></div>
-        <div id="hours-since-last-win"></div>
-        <div id="last-20-games-stats"></div>
-    </div>
-
-    <!-- Load the DotaStatsClient class -->
-    <script src="js/script.js"></script>
-    <script>
-        // Initialize after the DOM is loaded
-        document.addEventListener('DOMContentLoaded', async () => {
-            var games_since_last_win = await numberOfGamesSinceLastWin();
-            var hours_since_last_win = await hoursSinceLastWin();
-            var last_20_games_wins = await lastXGamesNumberOfWins(20);
-            try {
-                const stats = await client.getLastWinStats(80320987);
-                document.getElementById('games-since-last-win').textContent = 
-                    `Number of games since Phone won his last game: ${games_since_last_win}`;
-                document.getElementById('hours-since-last-win').textContent = 
-                    `Number of hours that have passed since Phone won his last game: ${hours_since_last_win}`;
-                document.getElementById('hours-since-last-win').textContent = 
-                    `Phone's Win stats over the last his 20 games: ${last_20_games_wins} / 20`;
-            } catch (error) {
-                console.error('Failed to get stats:', error);
-            }
-        });
-    </script>
+  <div id="stats-container">
+    <!-- Stats will be displayed here -->
+    <h2>Phone's Latest Dota 2 Stats</h2>
+    <div id="games-since-last-win"></div>
+    <div id="hours-since-last-win"></div>
+    <div id="last-20-games-stats"></div>
+  </div>
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        var games_since_last_win = await numberOfGamesSinceLastWin();
+        var hours_since_last_win = await hoursSinceLastWin();
+        var last_20_games_wins = await lastXGamesNumberOfWins(20);
+        document.getElementById('games-since-last-win').textContent = 
+          `Number of games since Phone won his last game: ${games_since_last_win}`;
+        document.getElementById('hours-since-last-win').textContent = 
+          `Number of hours that have passed since Phone won his last game: ${hours_since_last_win}`;
+        document.getElementById('hours-since-last-win').textContent = 
+          `Phone's Win stats over the last his 20 games: ${last_20_games_wins} / 20`;
+      } catch (error) {
+          console.error('Failed to get stats:', error);
+      }
+    });
+  </script>
 </body>
 </html>
