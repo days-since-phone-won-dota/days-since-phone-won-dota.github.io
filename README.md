@@ -1,2 +1,2 @@
-# days-since-phone-won-dota.github.io
-Days Since Phone Won Dota 2
+# Number of Days Since Pengubear Won a Dota 2 Game
+3
