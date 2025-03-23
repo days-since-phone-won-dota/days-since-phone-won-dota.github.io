@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phone's Latest Dota Stats</title>
+</head>
+<body>
+    <div id="stats-container">
+        <!-- Stats will be displayed here -->
+        <h2>Phone's Latest Dota 2 Stats</h2>
+        <div id="days-since-win"></div>
+        <div id="games-since-win"></div>
+    </div>
+
+    <!-- Load the DotaStatsClient class -->
+    <script src="js/script.js"></script>
+    <script>
+        // Initialize after the DOM is loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            const client = new DotaStatsClient('your-api-key');
+            try {
+                const stats = await client.getLastWinStats(80320987);
+                document.getElementById('days-since-win').textContent = 
+                    `Days since last win: ${stats.daysSinceLastWin}`;
+                document.getElementById('games-since-win').textContent = 
+                    `Games since last win: ${stats.gamesSinceLastWin}`;
+            } catch (error) {
+                console.error('Failed to get stats:', error);
+            }
+        });
+    </script>
+</body>
+</html>
