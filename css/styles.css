@@ -139,8 +139,9 @@ border-left-color: var(--accent-color);
 }
 
 .card-content {
+  font-weight: bold;
   padding: 15px;
-  font-size: 1.1em;
+  font-size: 1.5em;
   color: var(--text-color);
   background-color: transparent;
 }
@@ -152,6 +153,12 @@ border-left-color: var(--accent-color);
 }
 
 .skull {
+  color: #ff4444;
+  animation: shake 0.5s infinite;
+  text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+}
+
+.teleport {
   color: #ff4444;
   animation: shake 0.5s infinite;
   text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
@@ -172,3 +179,40 @@ border-left-color: var(--accent-color);
   filter: brightness(1.1);
 }
 
+.kda-content {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.kda-column {
+  text-align: center;
+  flex: 1;
+  min-width: 100px;
+}
+
+.kda-value {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.kda-death-value {
+  display: block;
+  font-size: 5.5em;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.kda-label {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-color);
+  margin-top: 5px;
+}
+
+.kda-column:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
