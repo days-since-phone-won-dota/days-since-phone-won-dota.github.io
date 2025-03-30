@@ -83,14 +83,6 @@ border-left-color: var(--accent-color);
   50% { transform: rotate(5deg); }
 }
 
-.trophy {
-  color: #ffd700;
-}
-
-.zap {
-  color: #00ff00;
-}
-
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -123,3 +115,60 @@ border-left-color: var(--accent-color);
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.stats-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--background-color);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  padding: 15px;
+  font-weight: bold;
+  color: var(--text-color);
+  border-radius: 8px 8px 0 0;
+}
+
+.card-content {
+  padding: 15px;
+  font-size: 1.1em;
+  color: var(--text-color);
+  background-color: transparent;
+}
+
+/* Update emoji styles */
+.trophy {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+.skull {
+  color: #ff4444;
+  animation: shake 0.5s infinite;
+  text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+}
+
+.zap {
+  color: #ff4444;
+  text-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
+}
+
+/* Add hover effects */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card:hover .card-header {
+  filter: brightness(1.1);
+}
+
