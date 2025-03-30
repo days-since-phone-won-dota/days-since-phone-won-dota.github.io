@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Phone's Latest Dota Stats</title>
+  <title>Phone's Latest Dota2 Stats</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
   <div class="stats-container">
-    <h2>Phone's Latest Dota 2 Stats</h2>
-    <div class="stat-item" id="games-since-last-win"></div>
-    <div class="stat-item" id="hours-since-last-win"></div>
-    <div class="stat-item" id="last-20-games-stats"></div>
+    <h2>Phone's Lastest Dota 2 Stats</h2>
+    <div class="card">
+        <div class="card-header">Number of games Phone has lost since his last win</div>
+        <div class="card-content" id="games-since-last-win"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Hours/Days since phone's last win</div>
+        <div class="card-content" id="hours-since-last-win"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Phone's winrate over his past 20 games</div>
+        <div class="card-content" id="last-20-games-stats"></div>
+    </div>
   </div>
+
 
   <script src="js/script.js"></script>
   <script>
@@ -29,25 +41,31 @@
         const hours_since_last_win = hoursSinceLastWin();
         const number_of_wins_past_x_games = numberOfWinsPastXGames();
 
+        // Games Since Last Win Card
+        const gamesCardContent = document.getElementById('games-since-last-win');
         if (number_of_games_since_last_win === 0) {
-          document.getElementById('games-since-last-win').innerHTML = 
-            '<span class="trophy">🏆 PHONE WON HIS LAST GAME POGGERS ! 🏆</span>';
+            gamesCardContent.innerHTML = 
+                '<span class="trophy">🏆 PHONE WON HIS LAST GAME POGGERS ! 🏆</span>';
         } else {
-          document.getElementById('games-since-last-win').innerHTML = 
-            `<span class="skull">☠️ Number of games Phone has lost since his last win: ${number_of_games_since_last_win}</span>`;
+            gamesCardContent.innerHTML = 
+                `<span class="skull">☠️ ${number_of_games_since_last_win}</span>`;
         }
 
+        // Hours Since Last Win Card
+        const hoursCardContent = document.getElementById('hours-since-last-win');
         if (hours_since_last_win <= 24) {
-          document.getElementById('hours-since-last-win').innerHTML = 
-            `<span class="zap">⚡ Hours since phone's last win: ${hours_since_last_win}</span>`;
+            hoursCardContent.innerHTML = 
+                `<span class="skull">☠️${hours_since_last_win} hours</span>`;
         } else {
-          const days_since_last_win = Math.round(hours_since_last_win / 24);
-          document.getElementById('hours-since-last-win').innerHTML = 
-            `<span class="skull">☠️ Days since phone's last win: ${days_since_last_win}</span>`;
+            const days_since_last_win = Math.round(hours_since_last_win / 24);
+            hoursCardContent.innerHTML = 
+                `<span class="skull">☠️${days_since_last_win} days</span>`;
         }
 
+        // Last 20 Games Stats Card
         document.getElementById('last-20-games-stats').innerHTML = 
-          `Phone's winrate over his past 20 games: ${number_of_wins_past_x_games} / 20`;
+            `<span class="skull">☠️ ${number_of_wins_past_x_games} / 20</span>`;
+
         hideLoading();
       } catch (error) {
         console.error('Failed to get stats:', error);
