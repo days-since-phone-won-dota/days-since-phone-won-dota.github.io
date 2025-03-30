@@ -1,0 +1,125 @@
+:root {
+  --primary-color: #8a2be2;
+  --secondary-color: #4b0082;
+  --accent-color: #ff69b4;
+  --text-color: #ffffff;
+  --background-color: #1a1a1a;
+  --background-image: url('https://pbs.twimg.com/profile_images/497185789550149633/5e0Do4hY_400x400.jpeg');
+}
+
+body {
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  background-size: 200px 200px;  /* Makes the image smaller */
+  background-repeat: repeat;     /* Enables repeating */
+  background-position: center;
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-container {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.stats-container:hover {
+  transform: translateY(-5px);
+}
+
+h2 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+.stat-item {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+transform: translateX(10px);
+border-left-color: var(--accent-color);
+}
+
+.meme-status {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.skull {
+  color: #ff4444;
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.trophy {
+  color: #ffd700;
+}
+
+.zap {
+  color: #00ff00;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.loading-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.loading-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

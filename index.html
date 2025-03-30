@@ -2,32 +2,62 @@
 <html>
 <head>
   <title>Phone's Latest Dota Stats</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-  <div id="stats-container">
-    <!-- Stats will be displayed here -->
+  <div class="stats-container">
     <h2>Phone's Latest Dota 2 Stats</h2>
-    <div id="games-since-last-win"></div>
-    <div id="hours-since-last-win"></div>
-    <div id="last-20-games-stats"></div>
+    <div class="stat-item" id="games-since-last-win"></div>
+    <div class="stat-item" id="hours-since-last-win"></div>
+    <div class="stat-item" id="last-20-games-stats"></div>
   </div>
+
   <script src="js/script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const showLoading = () => {
+        loadingOverlay.classList.add('active');
+      };
+      const hideLoading = () => {
+        loadingOverlay.classList.remove('active');
+      };
       try {
-        var games_since_last_win = await numberOfGamesSinceLastWin();
-        var hours_since_last_win = await hoursSinceLastWin();
-        var last_20_games_wins = await lastXGamesNumberOfWins(20);
-        document.getElementById('games-since-last-win').textContent = 
-          `Number of games since Phone won his last game: ${games_since_last_win}`;
-        document.getElementById('hours-since-last-win').textContent = 
-          `Number of hours that have passed since Phone won his last game: ${hours_since_last_win}`;
-        document.getElementById('last-20-games-stats').textContent = 
-          `Phone's Win stats over the last his 20 games: ${last_20_games_wins} / 20`;
+        showLoading();
+        await getLastXGames();
+        const number_of_games_since_last_win = numberOfGamesSinceLastWin();
+        const hours_since_last_win = hoursSinceLastWin();
+        const number_of_wins_past_x_games = numberOfWinsPastXGames();
+
+        if (number_of_games_since_last_win === 0) {
+          document.getElementById('games-since-last-win').innerHTML = 
+            '<span class="trophy">🏆 PHONE WON HIS LAST GAME POGGERS ! 🏆</span>';
+        } else {
+          document.getElementById('games-since-last-win').innerHTML = 
+            `<span class="skull">☠️ Number of games Phone has lost since his last win: ${number_of_games_since_last_win}</span>`;
+        }
+
+        if (hours_since_last_win <= 24) {
+          document.getElementById('hours-since-last-win').innerHTML = 
+            `<span class="zap">⚡ Hours since phone's last win: ${hours_since_last_win}</span>`;
+        } else {
+          const days_since_last_win = Math.round(hours_since_last_win / 24);
+          document.getElementById('hours-since-last-win').innerHTML = 
+            `<span class="skull">☠️ Days since phone's last win: ${days_since_last_win}</span>`;
+        }
+
+        document.getElementById('last-20-games-stats').innerHTML = 
+          `Phone's winrate over his past 20 games: ${number_of_wins_past_x_games} / 20`;
+        hideLoading();
       } catch (error) {
-          console.error('Failed to get stats:', error);
+        console.error('Failed to get stats:', error);
       }
     });
   </script>
+<div class="loading-overlay" id="loadingOverlay">
+  <img src="https://pbs.twimg.com/profile_images/497185789550149633/5e0Do4hY_400x400.jpeg" 
+       alt="Loading" 
+       class="loading-image">
+</div>
 </body>
 </html>
