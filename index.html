@@ -6,21 +6,45 @@
 </head>
 <body>
   <div class="stats-container">
-    <h2>Phone's Lastest Dota 2 Stats</h2>
+    <h2>Phone's Latest Dota 2 Stats</h2>
+    
     <div class="card">
-        <div class="card-header">Number of games Phone has lost since his last win</div>
-        <div class="card-content" id="games-since-last-win"></div>
+      <div class="card-header">KDA Past 20 Games</div>
+      <div class="card-content kda-content">
+          <div class="kda-column kills">
+              <span class="kda-value" id="kda-kills">0</span>
+              <span class="kda-label">Kills</span>
+          </div>
+          <div class="kda-column deaths">
+              <span class="kda-death-value" id="kda-deaths">0</span>
+              <span class="kda-label">Deaths</span>
+          </div>
+          <div class="kda-column assists">
+              <span class="kda-value" id="kda-assists">0</span>
+              <span class="kda-label">Assists</span>
+          </div>
+      </div>
+
+    <div class="card">
+      <div class="card-header">Number of games Phone has lost since his last win</div>
+      <div class="card-content" id="games-since-last-win"></div>
     </div>
 
     <div class="card">
-        <div class="card-header">Hours/Days since phone's last win</div>
-        <div class="card-content" id="hours-since-last-win"></div>
+      <div class="card-header">Hours/Days since phone's last win</div>
+      <div class="card-content" id="hours-since-last-win"></div>
     </div>
 
     <div class="card">
-        <div class="card-header">Phone's winrate over his past 20 games</div>
-        <div class="card-content" id="last-20-games-stats"></div>
+      <div class="card-header">Phone's winrate over his past 20 games</div>
+      <div class="card-content" id="last-20-games-stats"></div>
     </div>
+
+      <div class="card">
+        <div class="card-header">Number of TP scrolls Phone bought over the past 20 games</div>
+        <div class="card-content" id="tp-scrolls-bought"></div>
+      </div>
+  </div>
   </div>
 
 
@@ -37,6 +61,7 @@
       try {
         showLoading();
         await getLastXGames();
+        await getLastXGamesTotals();
         const number_of_games_since_last_win = numberOfGamesSinceLastWin();
         const hours_since_last_win = hoursSinceLastWin();
         const number_of_wins_past_x_games = numberOfWinsPastXGames();
@@ -66,6 +91,13 @@
         document.getElementById('last-20-games-stats').innerHTML = 
             `<span class="skull">☠️ ${number_of_wins_past_x_games} / 20</span>`;
 
+        
+        
+        // Last 20 Games TP Scrolls
+        document.getElementById('tp-scrolls-bought').innerHTML = 
+            `<span class="teleport">💨 ${getPastXGamesTPsPurchased()}</span>`;
+
+        updateKDARatios();
         hideLoading();
       } catch (error) {
         console.error('Failed to get stats:', error);
