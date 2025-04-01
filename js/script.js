@@ -85,6 +85,26 @@
     return lastXGamesTotals[TOTALS_TP_PURCHASED].sum;
   }
 
+  function showBadges() {
+    var badges = document.getElementsByClassName('badge-image');
+    Array.from(badges).forEach(badge => badge.style.display = 'inline-block');
+  }
+
+  function hideBadges() {
+    var badges = document.getElementsByClassName('badge-image');
+    Array.from(badges).forEach(badge => badge.style.display = 'none');
+  }
+
+  function showOverlay() {
+    var loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.add('active');
+  }
+
+  function hideOverlay() {
+    var loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.classList.remove('active');
+  }
+
   function updateKDARatios() {
     const totalKills = getPastXGamesTotalKills();
     const totalDeaths = getPastXGamesTotalDeaths();
@@ -93,6 +113,10 @@
     document.getElementById('kda-kills').textContent = totalKills;
     document.getElementById('kda-deaths').textContent = totalDeaths;
     document.getElementById('kda-assists').textContent = totalAssists;
+
+    if (totalDeaths >= 200) {
+      showBadges();
+    }
     
     // // Calculate and display KDA ratio
     // const kdaRatio = totalDeaths === 0 ? 
