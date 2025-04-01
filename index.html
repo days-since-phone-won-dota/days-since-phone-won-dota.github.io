@@ -58,15 +58,9 @@
   <script src="js/script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      const loadingOverlay = document.getElementById('loadingOverlay');
-      const showLoading = () => {
-        loadingOverlay.classList.add('active');
-      };
-      const hideLoading = () => {
-        loadingOverlay.classList.remove('active');
-      };
       try {
-        showLoading();
+        showOverlay();
+        hideBadges();
         await getLastXGames();
         await getLastXGamesTotals();
         const top_5_recommended_bans = await getLowestWinrateHeroes()
@@ -112,7 +106,7 @@
             `<span class="teleport">💨 ${getPastXGamesTPsPurchased()}</span>`;
 
         updateKDARatios();
-        hideLoading();
+        hideOverlay();
       } catch (error) {
         console.error('Failed to get stats:', error);
       }
