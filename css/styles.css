@@ -78,6 +78,15 @@ border-left-color: var(--accent-color);
   animation: shake 0.5s infinite;
 }
 
+.hero-list {
+  color: #ff4444;
+  list-style: none;
+}
+
+#recommended-bans {
+  padding: 0px;
+}
+
 @keyframes shake {
   0%, 100% { transform: rotate(-5deg); }
   50% { transform: rotate(5deg); }
