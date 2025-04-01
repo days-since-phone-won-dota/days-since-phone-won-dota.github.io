@@ -27,6 +27,11 @@
       </div>
 
     <div class="card">
+      <div class="card-header">Top 5 Recommended Bans</div>
+      <div class="card-content"><ul id="recommended-bans"></ul></div>
+    </div>
+
+    <div class="card">
       <div class="card-header">Number of games Phone has lost since his last win</div>
       <div class="card-content" id="games-since-last-win"></div>
     </div>
@@ -63,9 +68,16 @@
         showLoading();
         await getLastXGames();
         await getLastXGamesTotals();
+        const top_5_recommended_bans = await getLowestWinrateHeroes()
         const number_of_games_since_last_win = numberOfGamesSinceLastWin();
         const hours_since_last_win = hoursSinceLastWin();
         const number_of_wins_past_x_games = numberOfWinsPastXGames();
+
+        // Top 5 recommended bans
+        top_5_recommended_bans.forEach(heroObj => {
+          document.getElementById('recommended-bans').innerHTML += `<li class="hero-list">☠️${heroObj.name}</li>`;
+        }); 
+            
 
         // Games Since Last Win Card
         const gamesCardContent = document.getElementById('games-since-last-win');
