@@ -200,7 +200,7 @@ border-left-color: var(--accent-color);
 
 .kda-death-value {
   display: block;
-  font-size: 5.5em;
+  font-size: 6.9em;
   font-weight: bold;
   color: var(--accent-color);
 }
@@ -215,4 +215,8 @@ border-left-color: var(--accent-color);
 .kda-column:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease;
+}
+.badge-image {
+  width: 100px;
+  height: 100px;
 }
