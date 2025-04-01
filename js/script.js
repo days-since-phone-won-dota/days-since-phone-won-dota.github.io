@@ -7,6 +7,50 @@
   var lastXGamesResults = [];
   var lastXGamesTotals = [];
 
+  async function getLowestWinrateHeroes() {
+    const heroesUrl = "https://api.opendota.com/api/heroes";
+    const playerUrl = `https://api.opendota.com/api/players/${PHONE_PLAYER_ID}/heroes`;
+
+    try {
+        // Fetch hero list (to map hero_id to hero names)
+        const heroesResponse = await fetch(heroesUrl);
+        const heroesData = await heroesResponse.json();
+        
+        // Create a mapping { hero_id: hero_name }
+        const heroMap = {};
+        heroesData.forEach(hero => {
+            heroMap[hero.id] = hero.localized_name;
+        });
+
+        // Fetch player's hero stats
+        const response = await fetch(playerUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const heroes = await response.json();
+
+        // Filter heroes with more than 50 games played
+        const filteredHeroes = heroes.filter(h => h.games > 50);
+
+        // Sort by lowest win rate
+        filteredHeroes.sort((a, b) => (a.win / a.games) - (b.win / b.games));
+
+        // Get the bottom 5 heroes
+        const lowestWinrateHeroes = filteredHeroes.slice(0, 5).map(hero => ({
+            name: heroMap[hero.hero_id] || "Unknown Hero",
+            games: hero.games,
+            wins: hero.win,
+            win_rate: (hero.win / hero.games * 100).toFixed(2) + "%"
+        }));
+
+        return lowestWinrateHeroes;
+
+    } catch (error) {
+        console.error("Error fetching data:", error.message);
+    }
+}
+
   async function getLastXGames() {
     try {
       var request = await fetch(`https://api.opendota.com/api/players/${PHONE_PLAYER_ID}/matches?limit=${NUMBER_OF_GAMES}`);
@@ -111,3 +155,4 @@
     last_won_game_end_time = last_won_game_start_time + last_won_game_duration;
     return Math.round((current_time - last_won_game_end_time) / 3600);
   }
+
