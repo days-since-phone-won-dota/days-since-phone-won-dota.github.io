@@ -87,6 +87,11 @@ border-left-color: var(--accent-color);
   padding: 0px;
 }
 
+#daily-dose-video {
+  display: block;
+  margin: 0 auto;
+}
+
 @keyframes shake {
   0%, 100% { transform: rotate(-5deg); }
   50% { transform: rotate(5deg); }
