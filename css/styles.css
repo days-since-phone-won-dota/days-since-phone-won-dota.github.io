@@ -4,7 +4,7 @@
   --accent-color: #ff69b4;
   --text-color: #ffffff;
   --background-color: #1a1a1a;
-  --background-image: url('https://pbs.twimg.com/profile_images/497185789550149633/5e0Do4hY_400x400.jpeg');
+  --background-image: url('../images/pengubear.jpeg');
 }
 
 body {
@@ -233,4 +233,12 @@ border-left-color: var(--accent-color);
 .badge-image {
   width: 100px;
   height: 100px;
+}
+.idle-pengubear {
+  width: 50%;
+  height: 50%;
+}
+.idle-pengubear-death {
+  width: 100%;
+  height: 100%;
 }
