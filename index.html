@@ -5,6 +5,13 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
+  <!-- Sticky Cursor Toggle -->
+  <div class="cursor-toggle-container">
+    <input type="checkbox" id="cursor-toggle" class="toggle-input">
+    <label for="cursor-toggle" class="toggle-label"></label>
+    <span id="toggle-status">NO BKB</span>
+  </div>
+
   <div class="stats-container">
     <h2>Phone's Latest Dota 2 Stats</h2>
     
@@ -30,18 +37,7 @@
     <div class="card">
       <div class="card-header">Just for Laughs</div>
       <div class="card-content">
-        <!-- <div class="video-container">
-          <button class="prev" onclick="prevPage()">&#10094;</button>
-          <div class="videos" id="videos">
-              <div class="video-wrapper"><video src="video1.mp4" controls width="600"></video></div>
-              <div class="video-wrapper"><video src="video2.mp4" controls width="600"></video></div>
-          </div>
-          <button class="next" onclick="nextPage()">&#10095;</button>
-        </div> -->
         <iframe id ="daily-dose-video" src="https://clips.twitch.tv/embed?clip=AttractiveSourAlpacaBrokeBack-5HMSotgK1qZo2c1G&parent=days-since-phone-won-dota.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-        <!-- <video id="daily-dose-video" width="640" height="360" controls>
-          <source src="videos/phone_daily_dose_1.mp4" type="video/mp4">
-        </video> -->
       </div>
     </div>
 
@@ -79,6 +75,7 @@
       try {
         showOverlay();
         hideBadges();
+        addCursorToggleListener();
         await getLastXGames();
         await getLastXGamesTotals();
         const top_5_recommended_bans = await getLowestWinrateHeroes()
@@ -90,8 +87,7 @@
         top_5_recommended_bans.forEach(heroObj => {
           document.getElementById('recommended-bans').innerHTML += `<li class="hero-list">☠️${heroObj.name}</li>`;
         }); 
-            
-
+          
         // Games Since Last Win Card
         const gamesCardContent = document.getElementById('games-since-last-win');
         if (number_of_games_since_last_win === 0) {
