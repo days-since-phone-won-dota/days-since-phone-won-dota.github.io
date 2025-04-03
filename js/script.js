@@ -13,7 +13,7 @@
 
     cursorToggleInput.addEventListener("change", function () {
       if (this.checked) {
-        console.log(this.checked)
+        toggleStatus.textContent = "BKB";
         document.body.style.cursor = 'url(../images/black_king_bar_0.png), auto';
       } else {
         toggleStatus.textContent = "NO BKB";
