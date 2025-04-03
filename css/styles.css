@@ -21,6 +21,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: url('../images/black_king_bar.png'), auto;
 }
 
 .stats-container {
@@ -87,10 +88,45 @@ border-left-color: var(--accent-color);
   padding: 0px;
 }
 
+/* Videos - Head */
 #daily-dose-video {
   display: block;
   margin: 0 auto;
 }
+
+/* .video-container {
+  margin: 0 auto;
+  display: flex;
+  overflow: hidden;
+  width: 600px;
+  justify-content: center;
+  position: relative;
+}
+.videos {
+  display: flex;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+.video-wrapper {
+  width: 100%;
+  min-width: 600px;
+  padding: 10px;
+} */
+/* button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.prev { left: 0; }
+.next { right: 0; } */
+
+
+/* Videos - Tail */
 
 @keyframes shake {
   0%, 100% { transform: rotate(-5deg); }
