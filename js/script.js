@@ -7,6 +7,22 @@
   var lastXGamesResults = [];
   var lastXGamesTotals = [];
 
+  function addCursorToggleListener() {
+    var cursorToggleInput = document.getElementById("cursor-toggle");
+    var toggleStatus = document.getElementById("toggle-status");
+
+    cursorToggleInput.addEventListener("change", function () {
+      if (this.checked) {
+        console.log(this.checked)
+        document.body.style.cursor = 'url(../images/black_king_bar_0.png), auto';
+      } else {
+        toggleStatus.textContent = "NO BKB";
+        document.body.style.cursor = 'url(../images/black_king_bar_180.png), auto';
+      }
+    })
+  }
+        
+
   async function getLowestWinrateHeroes() {
     const heroesUrl = "https://api.opendota.com/api/heroes";
     const playerUrl = `https://api.opendota.com/api/players/${PHONE_PLAYER_ID}/heroes`;

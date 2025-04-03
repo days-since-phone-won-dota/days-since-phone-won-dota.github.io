@@ -21,8 +21,64 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: url('../images/black_king_bar.png'), auto;
+  cursor: url('../images/black_king_bar_180.png'), auto;
 }
+
+/*Cursor Toggle - Head*/
+.cursor-toggle-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+  background: var(--background-color);
+  padding: 8px 15px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+/* Hide default checkbox */
+.toggle-input {
+  display: none;
+}
+/* Toggle switch */
+.toggle-label {
+  width: 50px;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 25px;
+  position: relative;
+  cursor: url('../images/black_king_bar_180.png'), auto;
+  transition: background 0.3s;
+}
+/* Switch button (slider) */
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--background-color);
+  border-radius: 50%;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  transition: left 0.3s;
+}
+/* Checked state */
+.toggle-input:checked + .toggle-label {
+  background-color: gold;
+  cursor: url('../images/black_king_bar_0.png'), auto;
+}
+.toggle-input:checked + .toggle-label::after {
+  left: 25px;
+}
+#toggle-status {
+  color: #ff4444;
+  font-weight: bold;
+}
+/*Cursor Toggle - Tail*/
 
 .stats-container {
   background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
@@ -93,40 +149,6 @@ border-left-color: var(--accent-color);
   display: block;
   margin: 0 auto;
 }
-
-/* .video-container {
-  margin: 0 auto;
-  display: flex;
-  overflow: hidden;
-  width: 600px;
-  justify-content: center;
-  position: relative;
-}
-.videos {
-  display: flex;
-  overflow: hidden;
-  transition: transform 0.5s ease;
-}
-.video-wrapper {
-  width: 100%;
-  min-width: 600px;
-  padding: 10px;
-} */
-/* button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-.prev { left: 0; }
-.next { right: 0; } */
-
-
-/* Videos - Tail */
 
 @keyframes shake {
   0%, 100% { transform: rotate(-5deg); }
