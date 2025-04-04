@@ -4,8 +4,11 @@
   const TOTALS_DEATHS_INDEX = 1;
   const TOTALS_ASSISTS_INDEX = 2;
   const TOTALS_TP_PURCHASED = 18;
+  const PARENT = "days-since-phone-won-dota.github.io"
   var lastXGamesResults = [];
   var lastXGamesTotals = [];
+  let videoLinks = [];  // for videos
+  let currentIndex = 0; // for videos
 
   function addCursorToggleListener() {
     var cursorToggleInput = document.getElementById("cursor-toggle");
@@ -15,13 +18,53 @@
       if (this.checked) {
         toggleStatus.textContent = "BKB";
         document.body.style.cursor = 'url(../images/black_king_bar_0.png), auto';
+        document.querySelectorAll(".side-button").forEach(button => {
+          button.classList.remove("bkb-cursor", "bkb-cursor-reverse");
+          button.classList.add("bkb-cursor");
+        });
       } else {
         toggleStatus.textContent = "NO BKB";
         document.body.style.cursor = 'url(../images/black_king_bar_180.png), auto';
+        document.querySelectorAll(".side-button").forEach(button => {
+          button.classList.remove("bkb-cursor", "bkb-cursor-reverse");
+          button.classList.add("bkb-cursor-reverse");
+        });
       }
     })
   }
-        
+
+  function setVideo(index) {
+    const iframe = document.getElementById('daily-dose-video');
+    iframe.src = videoLinks[index];
+  }
+  
+  async function loadVideos() {
+    try {
+      document.getElementById('prev-button').addEventListener('click', () => {
+        if (videoLinks.length === 0) return;
+        currentIndex = (currentIndex - 1 + videoLinks.length) % videoLinks.length;
+        setVideo(currentIndex);
+      });
+    
+      document.getElementById('next-button').addEventListener('click', () => {
+        if (videoLinks.length === 0) return;
+        currentIndex = (currentIndex + 1) % videoLinks.length;
+        setVideo(currentIndex);
+      });
+
+      const response = await fetch('../videos/twitch_clips.txt');
+      const text = await response.text();
+      videoLinks = text.trim().split('\n').map(link => {
+        cleaned_link = link.replace(/\r$/, '');
+        return `${cleaned_link}${PARENT}`
+      });
+      if (videoLinks.length > 0) {
+        setVideo(currentIndex);
+      }
+    } catch (err) {
+      console.error('Error loading video list:', err);
+    }
+  }
 
   async function getLowestWinrateHeroes() {
     const heroesUrl = "https://api.opendota.com/api/heroes";

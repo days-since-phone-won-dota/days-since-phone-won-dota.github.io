@@ -37,7 +37,12 @@
     <div class="card">
       <div class="card-header">Just for Laughs</div>
       <div class="card-content">
-        <iframe id ="daily-dose-video" src="https://clips.twitch.tv/embed?clip=AttractiveSourAlpacaBrokeBack-5HMSotgK1qZo2c1G&parent=days-since-phone-won-dota.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+        <div class="video-container">
+          <button id="prev-button" class="side-button bkb-cursor-reverse">&#9664;</button>
+          <iframe id ="daily-dose-video" src="https://clips.twitch.tv/embed?clip=AttractiveSourAlpacaBrokeBack-5HMSotgK1qZo2c1G&parent=days-since-phone-won-dota.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+          <button id="next-button" class="side-button bkb-cursor-reverse">&#9654;</button>
+        </div>
+        
       </div>
     </div>
 
@@ -76,6 +81,7 @@
         showOverlay();
         hideBadges();
         addCursorToggleListener();
+        loadVideos()
         await getLastXGames();
         await getLastXGamesTotals();
         const top_5_recommended_bans = await getLowestWinrateHeroes()

@@ -78,7 +78,39 @@ body {
   color: #ff4444;
   font-weight: bold;
 }
+.bkb-cursor {
+  cursor: url("../images/black_king_bar_0.png"), auto;
+}
+.bkb-cursor-reverse {
+  cursor: url("../images/black_king_bar_180.png"), auto;
+}
 /*Cursor Toggle - Tail*/
+
+/*Video - Head*/
+.video-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-width: max-content;
+}
+#daily-dose-video {
+  width: 620px;
+  min-width: 620px;
+  min-height: 378px;
+  border: none;
+}
+.side-button {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 50%;
+  border: none;
+  background: #eee;
+  transition: all 0.2s ease;
+}
+/*Video - Tail*/
+
 
 .stats-container {
   background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
@@ -144,11 +176,6 @@ border-left-color: var(--accent-color);
   padding: 0px;
 }
 
-/* Videos - Head */
-#daily-dose-video {
-  display: block;
-  margin: 0 auto;
-}
 
 @keyframes shake {
   0%, 100% { transform: rotate(-5deg); }
