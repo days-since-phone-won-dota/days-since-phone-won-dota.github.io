@@ -1,139 +1,183 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Phone's Latest Dota2 Stats</title>
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
-  <!-- Sticky Cursor Toggle -->
-  <div class="cursor-toggle-container">
-    <input type="checkbox" id="cursor-toggle" class="toggle-input">
-    <label for="cursor-toggle" class="toggle-label"></label>
-    <span id="toggle-status">NO BKB</span>
-  </div>
-
-  <div class="stats-container">
-    <h2>Phone's Latest Dota 2 Stats</h2>
-    
-    <div class="card">
-      <div class="card-header">KDA Past 20 Games</div>
-      <img src="images/club_10_deaths.png" alt="Profile Badge" class="badge-image">
-      <img src="images/club_10_beardge.jpeg" alt="Profile Badge" class="badge-image">
-      <div class="card-content kda-content">
-          <div class="kda-column kills">
-              <span class="kda-value" id="kda-kills"><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear"></span>
-              <span class="kda-label">Kills</span>
-          </div>
-          <div class="kda-column deaths">
-              <span class="kda-death-value" id="kda-deaths"><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear-death"></span>
-              <span class="kda-label">Deaths</span>
-          </div>
-          <div class="kda-column assists">
-              <span class="kda-value" id="kda-assists"><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear"></span>
-              <span class="kda-label">Assists</span>
-          </div>
-      </div>
-
-    <div class="card">
-      <div class="card-header">Just for Laughs</div>
-      <div class="card-content">
-        <div class="video-container">
-          <button id="prev-button" class="side-button bkb-cursor-reverse">&#9664;</button>
-          <iframe id ="daily-dose-video" src="https://clips.twitch.tv/embed?clip=AttractiveSourAlpacaBrokeBack-5HMSotgK1qZo2c1G&parent=days-since-phone-won-dota.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-          <button id="next-button" class="side-button bkb-cursor-reverse">&#9654;</button>
-        </div>
-        
-      </div>
+  <head>
+    <title>Phone's Latest Dota2 Stats</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Sticky Cursor Toggle -->
+    <div class="cursor-toggle-container">
+      <input type="checkbox" id="cursor-toggle" class="toggle-input" />
+      <label for="cursor-toggle" class="toggle-label"></label>
+      <span id="toggle-status">NO BKB</span>
+      <audio id="audio" src="assets/Ui_coins.mp3.mpeg"></audio>
+      <button class="tip-button">
+        <img
+          src="assets/Shards_splash.webp"
+          height="24px"
+          width="24px"
+          alt="Shard icon"
+        />
+        <span style="color: #f1e4c4">TIP</span>
+      </button>
     </div>
 
-    <div class="card">
-      <div class="card-header">Top 5 Recommended Bans</div>
-      <div class="card-content"><ul id="recommended-bans"></ul></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">Number of games Phone has lost since his last win</div>
-      <div class="card-content" id="games-since-last-win"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">Hours/Days since phone's last win</div>
-      <div class="card-content" id="hours-since-last-win"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">Phone's winrate over his past 20 games</div>
-      <div class="card-content" id="last-20-games-stats"></div>
-    </div>
+    <div class="stats-container">
+      <h2>Phone's Latest Dota 2 Stats</h2>
 
       <div class="card">
-        <div class="card-header">Number of TP scrolls Phone bought over the past 20 games</div>
-        <div class="card-content" id="tp-scrolls-bought"></div>
+        <div class="card-header">KDA Past 20 Games</div>
+        <img
+          src="images/club_10_deaths.png"
+          alt="Profile Badge"
+          class="badge-image"
+        />
+        <img
+          src="images/club_10_beardge.jpeg"
+          alt="Profile Badge"
+          class="badge-image"
+        />
+        <div class="card-content kda-content">
+          <div class="kda-column kills">
+            <span class="kda-value" id="kda-kills"
+              ><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear"
+            /></span>
+            <span class="kda-label">Kills</span>
+          </div>
+          <div class="kda-column deaths">
+            <span class="kda-death-value" id="kda-deaths"
+              ><img
+                src="images/pengubear.jpeg"
+                alt="0"
+                class="idle-pengubear-death"
+            /></span>
+            <span class="kda-label">Deaths</span>
+          </div>
+          <div class="kda-column assists">
+            <span class="kda-value" id="kda-assists"
+              ><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear"
+            /></span>
+            <span class="kda-label">Assists</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Just for Laughs</div>
+          <div class="card-content">
+            <div class="video-container">
+              <button id="prev-button" class="side-button bkb-cursor-reverse">
+                &#9664;
+              </button>
+              <iframe
+                id="daily-dose-video"
+                src="https://clips.twitch.tv/embed?clip=AttractiveSourAlpacaBrokeBack-5HMSotgK1qZo2c1G&parent=days-since-phone-won-dota.github.io"
+                frameborder="0"
+                allowfullscreen="true"
+                scrolling="no"
+                height="378"
+                width="620"
+              ></iframe>
+              <button id="next-button" class="side-button bkb-cursor-reverse">
+                &#9654;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Top 5 Recommended Bans</div>
+          <div class="card-content"><ul id="recommended-bans"></ul></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            Number of games Phone has lost since his last win
+          </div>
+          <div class="card-content" id="games-since-last-win"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Hours/Days since phone's last win</div>
+          <div class="card-content" id="hours-since-last-win"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Phone's winrate over his past 20 games</div>
+          <div class="card-content" id="last-20-games-stats"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            Number of TP scrolls Phone bought over the past 20 games
+          </div>
+          <div class="card-content" id="tp-scrolls-bought"></div>
+        </div>
       </div>
-  </div>
-  </div>
+    </div>
 
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          showOverlay();
+          hideBadges();
+          addCursorToggleListener();
+          loadVideos();
+          await getLastXGames();
+          await getLastXGamesTotals();
+          const top_5_recommended_bans = await getLowestWinrateHeroes();
+          const number_of_games_since_last_win = numberOfGamesSinceLastWin();
+          const hours_since_last_win = hoursSinceLastWin();
+          const number_of_wins_past_x_games = numberOfWinsPastXGames();
 
-  <script src="js/script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        showOverlay();
-        hideBadges();
-        addCursorToggleListener();
-        loadVideos()
-        await getLastXGames();
-        await getLastXGamesTotals();
-        const top_5_recommended_bans = await getLowestWinrateHeroes()
-        const number_of_games_since_last_win = numberOfGamesSinceLastWin();
-        const hours_since_last_win = hoursSinceLastWin();
-        const number_of_wins_past_x_games = numberOfWinsPastXGames();
+          // Top 5 recommended bans
+          top_5_recommended_bans.forEach((heroObj) => {
+            document.getElementById(
+              "recommended-bans"
+            ).innerHTML += `<li class="hero-list">☠️${heroObj.name}</li>`;
+          });
 
-        // Top 5 recommended bans
-        top_5_recommended_bans.forEach(heroObj => {
-          document.getElementById('recommended-bans').innerHTML += `<li class="hero-list">☠️${heroObj.name}</li>`;
-        }); 
-          
-        // Games Since Last Win Card
-        const gamesCardContent = document.getElementById('games-since-last-win');
-        if (number_of_games_since_last_win === 0) {
-            gamesCardContent.innerHTML = 
-                '<span class="trophy">🏆 Seems like Phone won his last game, should be got bug.</span>';
-        } else {
-            gamesCardContent.innerHTML = 
-                `<span class="skull">☠️ ${number_of_games_since_last_win}</span>`;
-        }
+          // Games Since Last Win Card
+          const gamesCardContent = document.getElementById(
+            "games-since-last-win"
+          );
+          if (number_of_games_since_last_win === 0) {
+            gamesCardContent.innerHTML =
+              '<span class="trophy">🏆 Seems like Phone won his last game, should be got bug.</span>';
+          } else {
+            gamesCardContent.innerHTML = `<span class="skull">☠️ ${number_of_games_since_last_win}</span>`;
+          }
 
-        // Hours Since Last Win Card
-        const hoursCardContent = document.getElementById('hours-since-last-win');
-        if (hours_since_last_win <= 24) {
-            hoursCardContent.innerHTML = 
-                `<span class="skull">☠️${hours_since_last_win} hours</span>`;
-        } else {
+          // Hours Since Last Win Card
+          const hoursCardContent = document.getElementById(
+            "hours-since-last-win"
+          );
+          if (hours_since_last_win <= 24) {
+            hoursCardContent.innerHTML = `<span class="skull">☠️${hours_since_last_win} hours</span>`;
+          } else {
             const days_since_last_win = Math.round(hours_since_last_win / 24);
-            hoursCardContent.innerHTML = 
-                `<span class="skull">☠️${days_since_last_win} days</span>`;
+            hoursCardContent.innerHTML = `<span class="skull">☠️${days_since_last_win} days</span>`;
+          }
+
+          // Last 20 Games Stats Card
+          document.getElementById(
+            "last-20-games-stats"
+          ).innerHTML = `<span class="skull">☠️ ${number_of_wins_past_x_games} / 20</span>`;
+
+          // Last 20 Games TP Scrolls
+          document.getElementById(
+            "tp-scrolls-bought"
+          ).innerHTML = `<span class="teleport">💨 ${getPastXGamesTPsPurchased()}</span>`;
+
+          updateKDARatios();
+          hideOverlay();
+        } catch (error) {
+          console.error("Failed to get stats:", error);
         }
-
-        // Last 20 Games Stats Card
-        document.getElementById('last-20-games-stats').innerHTML = 
-            `<span class="skull">☠️ ${number_of_wins_past_x_games} / 20</span>`;
-
-        
-        
-        // Last 20 Games TP Scrolls
-        document.getElementById('tp-scrolls-bought').innerHTML = 
-            `<span class="teleport">💨 ${getPastXGamesTPsPurchased()}</span>`;
-
-        updateKDARatios();
-        hideOverlay();
-      } catch (error) {
-        console.error('Failed to get stats:', error);
-      }
-    });
-  </script>
-<div class="loading-overlay" id="loadingOverlay">
-  <img src="images/pengubear.jpeg" alt="Loading" class="loading-image">
-</div>
-</body>
+      });
+    </script>
+    <div class="loading-overlay" id="loadingOverlay">
+      <img src="images/pengubear.jpeg" alt="Loading" class="loading-image" />
+    </div>
+  </body>
 </html>
