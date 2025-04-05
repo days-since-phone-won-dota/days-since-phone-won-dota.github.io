@@ -488,3 +488,27 @@ h2 {
     opacity: 1;
   }
 }
+
+.visitor-counter-container {
+  position: fixed; /* Position it relative to the viewport */
+  top: 60px; /* Adjust top position as needed */
+  right: 10px; /* Align to the right */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--background-color);
+  padding: 8px 15px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+.visitor-counter-label {
+  font-size: 0.9em;
+  color: var(--text-color);
+}
+
+.counterimg {
+  height: 20px;
+  vertical-align: middle;
+}
