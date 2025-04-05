@@ -16,6 +16,7 @@ let tipContainer;
 let tipHeroIndex = 0;
 let tipHeroes = ["Pudge", "Hoodwink", "Oracle", "Necrolyte"];
 let tipWebhookSite = "https://www.freevisitorcounters.com/en/home/counter/1323914/t/13"
+let tipCounterImageSrc = "https://www.freevisitorcounters.com/en/counter/render/1323914/t/13"
 
 function addCursorToggleListener() {
   var cursorToggleInput = document.getElementById("cursor-toggle");
@@ -246,9 +247,18 @@ async function triggerWebhookVisit() {
   await fetch(tipWebhookSite, {mode:'no-cors'});
 }
 
+async function refreshTipCounterImage() {
+  const counterImage = document.getElementById('tipcounter');
+  const currentTime = new Date().getTime();
+
+  counterImage.src = `${tipCounterImageSrc}?t=${currentTime}`;
+
+}
+
 /* Tipping feature */
 function generateTip({ heroName = "Enchantress" }) {
   triggerWebhookVisit();
+  refreshTipCounterImage();
   tipContainer.insertAdjacentHTML(
     "beforeend",
     `<div class="tip">
