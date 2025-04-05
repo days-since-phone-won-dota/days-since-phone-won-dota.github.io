@@ -209,6 +209,7 @@ h2 {
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
+  flex-direction: column; /* Change to column layout */
   justify-content: center;
   align-items: center;
   z-index: 3;
@@ -508,7 +509,12 @@ h2 {
   color: var(--text-color);
 }
 
-.counterimg {
+.tipcounter {
   height: 20px;
   vertical-align: middle;
+}
+
+.counterimg {
+  height: 0px;
+  width: 0px;
 }
