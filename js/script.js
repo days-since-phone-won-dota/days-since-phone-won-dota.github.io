@@ -22,6 +22,8 @@ function addCursorToggleListener() {
 
   cursorToggleInput.addEventListener("change", function () {
     if (this.checked) {
+      const audio = new Audio('../assets/black_king_bar.mp3.mpeg');
+      audio.play();
       toggleStatus.textContent = "BKB";
       document.body.style.cursor = "url(../images/black_king_bar_0.png), auto";
       document.querySelectorAll(".side-button").forEach((button) => {
