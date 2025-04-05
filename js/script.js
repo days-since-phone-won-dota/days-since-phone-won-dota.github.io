@@ -15,6 +15,7 @@ const tipButton = document.querySelector(".tip-button");
 let tipContainer;
 let tipHeroIndex = 0;
 let tipHeroes = ["Pudge", "Hoodwink", "Oracle", "Necrolyte"];
+let tipWebhookSite = "https://www.freevisitorcounters.com/en/home/counter/1323914/t/13"
 
 function addCursorToggleListener() {
   var cursorToggleInput = document.getElementById("cursor-toggle");
@@ -191,25 +192,6 @@ function updateKDARatios() {
   if (totalDeaths >= 200) {
     showBadges();
   }
-
-  // // Calculate and display KDA ratio
-  // const kdaRatio = totalDeaths === 0 ?
-  //     (totalKills + totalAssists).toFixed(1) :
-  //     ((totalKills + totalAssists) / totalDeaths).toFixed(2);
-
-  // const kdaRatioElement = document.createElement('div');
-  // kdaRatioElement.className = 'kda-ratio';
-  // kdaRatioElement.textContent = `KDA: ${kdaRatio}`;
-  // kdaRatioElement.style.cssText = `
-  //     font-size: 1.2em;
-  //     font-weight: bold;
-  //     color: var(--accent-color);
-  //     margin-top: 10px;
-  //     text-align: center;
-  // `;
-
-  // const kdaContent = document.querySelector('.kda-content');
-  // kdaContent.appendChild(kdaRatioElement);
 }
 
 // player_slot 0<=4 --> Radiant
@@ -258,12 +240,13 @@ function hoursSinceLastWin() {
   return Math.round((current_time - last_won_game_end_time) / 3600);
 }
 
-function epheyLaugh() {
-  var epheyLaughButton ;
+async function triggerWebhookVisit() {
+  await fetch(tipWebhookSite, {mode:'no-cors'});
 }
 
 /* Tipping feature */
 function generateTip({ heroName = "Enchantress" }) {
+  triggerWebhookVisit();
   tipContainer.insertAdjacentHTML(
     "beforeend",
     `<div class="tip">
