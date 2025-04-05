@@ -80,6 +80,12 @@ body {
 .toggle-input:checked + .toggle-label::after {
   left: 25px;
 }
+.toggle-input:checked + .toggle-label:hover {
+  background-color: #ccc;
+}
+.toggle-input + .toggle-label:hover {
+  background-color: gold;;
+}
 #toggle-status {
   color: #ff4444;
   font-weight: bold;
