@@ -178,6 +178,8 @@ function showOverlay() {
 function hideOverlay() {
   var loadingOverlay = document.getElementById("loadingOverlay");
   loadingOverlay.classList.remove("active");
+  var tipPhoneAudio = document.getElementById("tipPhone");
+  tipPhoneAudio.play();
 }
 
 function updateKDARatios() {
