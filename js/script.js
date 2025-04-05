@@ -4,7 +4,7 @@ const TOTALS_KILLS_INDEX = 0;
 const TOTALS_DEATHS_INDEX = 1;
 const TOTALS_ASSISTS_INDEX = 2;
 const TOTALS_TP_PURCHASED = 18;
-const PARENT = "days-since-phone-won-dota.github.io";
+const PARENT = "days-since-phone-won-dota.github.io&parent=localhost";
 var lastXGamesResults = [];
 var lastXGamesTotals = [];
 let videoLinks = []; // for videos
@@ -256,6 +256,10 @@ function hoursSinceLastWin() {
   return Math.round((current_time - last_won_game_end_time) / 3600);
 }
 
+function epheyLaugh() {
+  var epheyLaughButton ;
+}
+
 /* Tipping feature */
 function generateTip({ heroName = "Enchantress" }) {
   tipContainer.insertAdjacentHTML(
@@ -315,3 +319,8 @@ tipButton.addEventListener("click", () => {
   });
   tipHeroIndex++;
 });
+
+function playEpheyLaugh() {
+  var epheyLaughAudio = document.getElementById("epheyLaughAudio");
+  epheyLaughAudio.play();
+}
