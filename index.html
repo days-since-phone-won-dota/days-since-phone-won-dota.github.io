@@ -24,7 +24,7 @@
 
       <div class="visitor-counter-container">
         <span class="visitor-counter-label">TIP Counter:</span>
-        <img src="https://www.freevisitorcounters.com/en/counter/render/1323914/t/13" border="0" class="tipcounter" />
+        <img id="tipcounter" src="https://www.freevisitorcounters.com/en/counter/render/1323914/t/13" border="0" class="tipcounter" />
       </div>
     </div>
     
@@ -189,6 +189,7 @@
 
           updateKDARatios();
           hideOverlay();
+          refreshTipCounterImage();
         } catch (error) {
           console.error("Failed to get stats:", error);
         }
