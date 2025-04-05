@@ -121,6 +121,9 @@ body {
   background: #eee;
   transition: all 0.2s ease;
 }
+.side-button:hover {
+  background: var(--accent-color);
+}
 /*Video - Tail*/
 
 
