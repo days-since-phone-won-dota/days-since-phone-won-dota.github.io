@@ -227,10 +227,11 @@
 
           generatePhonesFriendsTable();
           updateKDARatios();
+          refreshTipCounterImage();
+          
           setTimeout(() => {
             stopLoadingAnimation();
             hideOverlay();
-            refreshTipCounterImage();
           }, 10000);
           
         } catch (error) {

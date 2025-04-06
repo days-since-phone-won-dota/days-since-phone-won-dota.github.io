@@ -207,8 +207,8 @@ async function randomizeEncouragement() {
   var res = await req.text();
   var words = res.split("\n");
   var encouragementText = document.getElementById("loading-message");
-  encouragementText.innerHTML = "<strong>Words of Encouragement for Phone: </strong>" +
-   words[Math.floor(Math.random() * words.length)];
+  encouragementText.innerHTML = "<strong>Words of Encouragement for Phone: </strong><br><center>" +
+   words[Math.floor(Math.random() * words.length)] + "</center>";
 }
 
 function hideOverlay() {
