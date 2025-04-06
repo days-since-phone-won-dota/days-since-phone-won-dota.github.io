@@ -2,6 +2,8 @@
   --primary-color: #8a2be2;
   --secondary-color: #4b0082;
   --accent-color: #ff69b4;
+  --table-header-color: #a10754;
+  --table-row-color: #ef5da6;
   --text-color: #ffffff;
   --background-color: #1a1a1a;
   --background-image: url("../images/pengubear.jpeg");
@@ -250,6 +252,7 @@ h2 {
   overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: normal;
+  transition: font-size 0.1s ease-out;
 }
 
 #loading-message:hover {
@@ -561,4 +564,30 @@ h2 {
 .counterimg {
   height: 0px;
   width: 0px;
+}
+
+.phones-friends-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.phones-friends-table th,
+.phones-friends-table td {
+  border: 1px solid var(--accent-color);
+  padding: 8px;
+  text-align: left;
+}
+
+.phones-friends-table th {
+  background-color: var(--table-header-color);
+  font-weight: bold;
+}
+
+.phones-friends-table tr:nth-child(even) {
+  background-color: var(--table-row-color);
+}
+
+.phones-friends-table tr:hover {
+  background-color: var(--accent-color);
 }
