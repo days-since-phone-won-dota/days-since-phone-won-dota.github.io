@@ -252,6 +252,7 @@ h2 {
   overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: normal;
+  transition: font-size 0.1s ease-out;
 }
 
 #loading-message:hover {

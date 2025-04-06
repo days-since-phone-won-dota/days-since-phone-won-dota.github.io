@@ -171,18 +171,35 @@ function hideBadges() {
   Array.from(badges).forEach((badge) => (badge.style.display = "none"));
 }
 
+function startLoadingAnimation() {
+  const loadingMessage = document.getElementById('loading-message');
+  let fontSize = 16; // Start with 16px
+  
+  // Clear any existing animation
+  loadingMessage.style.animation = 'none';
+  
+  // Create interval to increase font size
+  const sizeInterval = setInterval(() => {
+      fontSize += 1;
+      loadingMessage.style.fontSize = `${fontSize}px`;
+  }, 100); // 100ms = 0.1 seconds
+  
+  // Store interval for cleanup
+  loadingMessage.sizeInterval = sizeInterval;
+}
+
 function showOverlay() {
   const loadingOverlay = document.getElementById("loadingOverlay");
   loadingOverlay.classList.add("active");
-  
-  // Add animation class to loading message
-  const loadingMessage = document.getElementById("loading-message");
-  loadingMessage.classList.add("expand");
-  
-  // Reset animation if already running
-  loadingMessage.style.animation = 'none';
-  loadingMessage.offsetHeight; // Trigger reflow
-  loadingMessage.style.animation = null;
+  startLoadingAnimation();
+}
+
+function stopLoadingAnimation() {
+  const loadingMessage = document.getElementById('loading-message');
+  if (loadingMessage.sizeInterval) {
+    clearInterval(loadingMessage.sizeInterval);
+    loadingMessage.style.transition = 'none';
+  }
 }
 
 async function randomizeEncouragement() {
@@ -388,7 +405,6 @@ async function generatePhonesFriendsTable() {
       friendArray.push(`${res[i].with_win}/${res[i].with_games}`);
       
       friendArray.forEach(data => {
-        console.log(data);
         const dataCell = document.createElement("td");
         dataCell.textContent = data;
         dataRow.append(dataCell);
@@ -399,6 +415,5 @@ async function generatePhonesFriendsTable() {
     var card_content = document.getElementById("phones-friends-card-content");
     card_content.appendChild(table);
   }
-
 
 }

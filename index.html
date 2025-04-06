@@ -227,8 +227,12 @@
 
           generatePhonesFriendsTable();
           updateKDARatios();
-          hideOverlay();
-          refreshTipCounterImage();
+          setTimeout(() => {
+            stopLoadingAnimation();
+            hideOverlay();
+            refreshTipCounterImage();
+          }, 10000);
+          
         } catch (error) {
           console.error("Failed to get stats:", error);
         }
