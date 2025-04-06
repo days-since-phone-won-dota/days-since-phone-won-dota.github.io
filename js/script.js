@@ -320,6 +320,7 @@ tipButton.addEventListener("click", () => {
 function initShortAudios() {
   epheyLaughButton = document.getElementById("ephey-laugh-button");
   cryBabyButton = document.getElementById("crybaby-button");
+  sorryButton = document.getElementById("sorry-button");
 
   epheyLaughButton.addEventListener("click", () => {
     var epheyLaughAudio = document.getElementById("epheyLaughAudio");
@@ -329,6 +330,11 @@ function initShortAudios() {
   cryBabyButton.addEventListener("click", () => {
     var cryBabyAudio = document.getElementById("cryBabyAudio");
     cryBabyAudio.play();
+  });
+
+  sorryButton.addEventListener("click", () => {
+    var sorryAudio = document.getElementById("sorryAudio");
+    sorryAudio.play();
   });
 
 }
