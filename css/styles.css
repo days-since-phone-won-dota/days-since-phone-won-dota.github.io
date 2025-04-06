@@ -361,15 +361,17 @@ h2 {
   width: 100%;
   height: 100%;
 }
-
-#ephey-laugh-button {
+.short-audio-container {
+  display: flex;
+  justify-content: center;
+}
+.short-audio {
   padding: 10px; /* Add some padding around the button */
   display: flex; /* Use flexbox for layout */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
 }
-
-.ephey-laugh-button {
+.short-audio-button {
   background-color: var(--accent-color); /* Use a bright, contrasting color */
   color: #333; /* Darker text for contrast */
   border: none;
@@ -383,15 +385,15 @@ h2 {
   align-items: center;
 }
 
-.ephey-laugh-button:hover {
+.short-audio-button:hover {
   background-color: #f2439b; /* Slightly brighter on hover */
 }
 
-.ephey-laugh-button img {
+.short-audio-button img {
   margin-right: 8px; /* Space between image and text */
 }
 
-.ephey-hehehe-text {
+.short-audio-text {
   color: var(--text-color);
 }
 
