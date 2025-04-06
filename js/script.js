@@ -317,7 +317,18 @@ tipButton.addEventListener("click", () => {
   tipHeroIndex++;
 });
 
-function playEpheyLaugh() {
-  var epheyLaughAudio = document.getElementById("epheyLaughAudio");
-  epheyLaughAudio.play();
+function initShortAudios() {
+  epheyLaughButton = document.getElementById("ephey-laugh-button");
+  cryBabyButton = document.getElementById("crybaby-button");
+
+  epheyLaughButton.addEventListener("click", () => {
+    var epheyLaughAudio = document.getElementById("epheyLaughAudio");
+    epheyLaughAudio.play();
+  });
+
+  cryBabyButton.addEventListener("click", () => {
+    var cryBabyAudio = document.getElementById("cryBabyAudio");
+    cryBabyAudio.play();
+  });
+
 }

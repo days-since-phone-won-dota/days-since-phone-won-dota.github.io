@@ -70,17 +70,36 @@
 
         <div class="card">
           <div class="card-header">Just for Laughs</div>
-          <div id="ephey-laugh-button">
-            <button class="ephey-laugh-button" onclick="playEpheyLaugh()">
-              <img
-                  src="images/audio-control-button.png"  height="24px"
-                  width="24px"
-                  alt="Ephey Laugh"
-              />
-              <span class="ephey-hehehe-text">Ephey - He-he-he-he-he</span>
-            </button>
-            <audio id="epheyLaughAudio" src="assets/ephey_laugh.mp3"></audio>
+
+          <div class="short-audio-container">
+
+            <div class="short-audio">
+              <button id="ephey-laugh-button" class="short-audio-button">
+                <img
+                    src="images/audio-control-button.png"  height="24px"
+                    width="24px"
+                    alt="Ephey Laugh"
+                />
+                <span class="short-audio-text">Ephey - He-he-he-he-he</span>
+              </button>
+              <audio id="epheyLaughAudio" src="assets/ephey_laugh.mp3"></audio>
+            </div>
+
+            <div class="short-audio">
+              <button id="crybaby-button" class="short-audio-button">
+                <img
+                    src="images/audio-control-button.png"  height="24px"
+                    width="24px"
+                    alt="Crybaby"
+                />
+                <span class="short-audio-text">Crybaby</span>
+              </button>
+              <audio id="cryBabyAudio" src="assets/phone_crying.mp3"></audio>
+            </div>
+
           </div>
+          
+
           <div class="card-content">
             <div class="video-container">
               <button id="prev-button" class="side-button bkb-cursor-reverse">
@@ -141,6 +160,7 @@
           hideBadges();
           addCursorToggleListener();
           loadVideos();
+          initShortAudios();
           await getLastXGames();
           await getLastXGamesTotals();
           const top_5_recommended_bans = await getLowestWinrateHeroes();
