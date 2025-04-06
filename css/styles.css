@@ -246,7 +246,7 @@ h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   margin: 20px 0;
   transition: transform 0.3s ease;
-  max-width: 128ch;
+  max-width: 64ch;
   overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: normal;
