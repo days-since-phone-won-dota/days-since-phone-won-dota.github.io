@@ -228,11 +228,13 @@
           generatePhonesFriendsTable();
           updateKDARatios();
           refreshTipCounterImage();
-          
+
           setTimeout(() => {
             stopLoadingAnimation();
             hideOverlay();
-          }, 10000);
+            var phoneCrying = document.getElementById("cryBabyAudio");
+            phoneCrying.play();
+          }, 6969);
           
         } catch (error) {
           console.error("Failed to get stats:", error);
