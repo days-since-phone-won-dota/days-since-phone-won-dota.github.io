@@ -172,8 +172,17 @@ function hideBadges() {
 }
 
 function showOverlay() {
-  var loadingOverlay = document.getElementById("loadingOverlay");
+  const loadingOverlay = document.getElementById("loadingOverlay");
   loadingOverlay.classList.add("active");
+  
+  // Add animation class to loading message
+  const loadingMessage = document.getElementById("loading-message");
+  loadingMessage.classList.add("expand");
+  
+  // Reset animation if already running
+  loadingMessage.style.animation = 'none';
+  loadingMessage.offsetHeight; // Trigger reflow
+  loadingMessage.style.animation = null;
 }
 
 async function randomizeEncouragement() {
@@ -345,5 +354,51 @@ function initShortAudios() {
     var sorryAudio = document.getElementById("sorryAudio");
     sorryAudio.play();
   });
+
+}
+
+async function generatePhonesFriendsTable() {
+  table_headers = ["Phone's Friend", "Recent Winrate with Phone"]
+  var phonesFriendsDataURL = `https://api.opendota.com/api/players/${PHONE_PLAYER_ID}/peers?limit=50`
+  
+  var req = await fetch(phonesFriendsDataURL);
+  var res = await req.json();
+
+  var card = document.getElementById("phones-friends-card");
+
+  if (res.length == 0) {
+    card.style.display = 'none';
+  } else {
+    var table = document.createElement('table');
+    table.className = 'phones-friends-table';
+
+    var headerRow = document.createElement('tr');
+    table_headers.forEach(header => {
+      const headerCell = document.createElement("th");
+      headerCell.textContent = header;
+      headerRow.appendChild(headerCell);
+    });
+
+    table.appendChild(headerRow);
+
+    for (i=0; i<res.length; i++) {
+      var dataRow = document.createElement('tr');
+      var friendArray = [];
+      friendArray.push(res[i].personaname);
+      friendArray.push(`${res[i].with_win}/${res[i].with_games}`);
+      
+      friendArray.forEach(data => {
+        console.log(data);
+        const dataCell = document.createElement("td");
+        dataCell.textContent = data;
+        dataRow.append(dataCell);
+      });
+      table.appendChild(dataRow);
+    }
+
+    var card_content = document.getElementById("phones-friends-card-content");
+    card_content.appendChild(table);
+  }
+
 
 }

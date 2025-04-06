@@ -133,6 +133,11 @@
           </div>
         </div>
 
+        <div class="card" id="phones-friends-card">
+          <div class="card-header">Phones Friends</div>
+          <div class="card-content" id="phones-friends-card-content"></div>
+        </div>
+
         <div class="card">
           <div class="card-header">Top 5 Recommended Bans</div>
           <div class="card-content"><ul id="recommended-bans"></ul></div>
@@ -220,6 +225,7 @@
             "tp-scrolls-bought"
           ).innerHTML = `<span class="teleport">💨 ${getPastXGamesTPsPurchased()}</span>`;
 
+          generatePhonesFriendsTable();
           updateKDARatios();
           hideOverlay();
           refreshTipCounterImage();
