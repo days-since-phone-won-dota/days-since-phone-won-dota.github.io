@@ -401,8 +401,10 @@ async function generatePhonesFriendsTable() {
     for (i=0; i<res.length; i++) {
       var dataRow = document.createElement('tr');
       var friendArray = [];
+      var friendWins = res[i].with_win;
+      var friendGames = res[i].with_games;
       friendArray.push(res[i].personaname);
-      friendArray.push(`${res[i].with_win}/${res[i].with_games}`);
+      friendArray.push(`${friendWins}/${friendGames} (${Math.round(friendWins/friendGames*100)}%)`);
       
       friendArray.forEach(data => {
         const dataCell = document.createElement("td");
