@@ -176,11 +176,19 @@ function showOverlay() {
   loadingOverlay.classList.add("active");
 }
 
+async function randomizeEncouragement() {
+  var req = await fetch("../assets/words_of_encouragement.txt");
+  var res = await req.text();
+  var words = res.split("\n");
+  var encouragementText = document.getElementById("loading-message");
+  encouragementText.innerHTML = words[Math.floor(Math.random() * words.length)];
+}
+
 function hideOverlay() {
   var loadingOverlay = document.getElementById("loadingOverlay");
   loadingOverlay.classList.remove("active");
-  var tipPhoneAudio = document.getElementById("tipPhone");
-  tipPhoneAudio.play();
+  // var tipPhoneAudio = document.getElementById("tipPhone");
+  // tipPhoneAudio.play();
 }
 
 function updateKDARatios() {
