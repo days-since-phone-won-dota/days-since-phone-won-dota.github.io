@@ -214,7 +214,7 @@ h2 {
 
 .loading-overlay {
   background-image: url('../images/phone_party_invite.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   position: fixed;
