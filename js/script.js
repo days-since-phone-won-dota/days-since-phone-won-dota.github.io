@@ -356,6 +356,7 @@ function initShortAudios() {
   epheyLaughButton = document.getElementById("ephey-laugh-button");
   cryBabyButton = document.getElementById("crybaby-button");
   sorryButton = document.getElementById("sorry-button");
+  bobianButton = document.getElementById("bobian-button");
 
   epheyLaughButton.addEventListener("click", () => {
     var epheyLaughAudio = document.getElementById("epheyLaughAudio");
@@ -370,6 +371,11 @@ function initShortAudios() {
   sorryButton.addEventListener("click", () => {
     var sorryAudio = document.getElementById("sorryAudio");
     sorryAudio.play();
+  });
+
+  bobianButton.addEventListener("click", () => {
+    var bobianAudio = document.getElementById("bobianAudio");
+    bobianAudio.play();
   });
 
 }
