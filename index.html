@@ -1,290 +1,341 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Phone Doto</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1323914/t/13"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Days Since Phone Won Dota</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <!-- Sticky Cursor Toggle -->
-    <div class="cursor-toggle-container">
-      <input type="checkbox" id="cursor-toggle" class="toggle-input" />
-      <label for="cursor-toggle" class="toggle-label"></label>
-      <span id="toggle-status">NO BKB</span>
-      <audio id="audio" src="assets/Ui_coins.mp3.mpeg"></audio>
-      <button class="tip-button">
-        <img
-          src="assets/Shards_splash.webp"
-          height="24px"
-          width="24px"
-          alt="Shard icon"
-        />
-        <span style="color: #f1e4c4">TIP</span>
-      </button>
+  <body class="invitation-pending">
+    <!-- Party Invitation Audio -->
+    <audio id="party-invitation-sound" preload="auto">
+      <source
+        src="assets/audio/Ui_panorama_panorama_custom_lobby_dialog_01.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
 
-      <div class="visitor-counter-container">
-        <span class="visitor-counter-label">TIP Counter:</span>
-        <img id="tipcounter" src="https://www.freevisitorcounters.com/en/counter/render/1323914/t/13" border="0" class="tipcounter" />
-      </div>
-    </div>
-    
+    <!-- Button Click Audio -->
+    <audio id="button-click-sound" preload="auto">
+      <source
+        src="assets/audio/Ui_panorama_panorama_misc_click_01.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
 
-    <div class="stats-container">
-      <h2>Phone's Latest Dota 2 Stats</h2>
+    <!-- Tip Audio -->
+    <audio id="tip-audio" preload="auto">
+      <source src="assets/audio/Ui_coins.mp3" type="audio/mpeg" />
+    </audio>
 
-      <div class="card">
-        <div class="card-header">KDA Past 20 Games</div>
-        <img
-          src="images/club_10_deaths.png"
-          alt="Profile Badge"
-          class="badge-image"
-        />
-        <img
-          src="images/club_10_beardge.jpeg"
-          alt="Profile Badge"
-          class="badge-image"
-        />
+    <!-- Tip Container -->
+    <div class="tip-container" id="tip-container"></div>
 
-        <img
-          src="images/finding_match.jpg"
-          alt="Finding Match"
-          class="finding-match-image"
-        />
+    <!-- Party Invitation Popup - Must have these IDs -->
+    <div class="party-invitation-overlay" id="party-invitation">
+      <div class="party-invitation">
+        <div class="party-invitation-header">PARTY INVITATION</div>
 
-        <div class="card-content kda-content">
-          <div class="kda-column kills">
-            <span class="kda-value" id="kda-kills"
-              ><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear"
-            /></span>
-            <span class="kda-label">Kills</span>
-          </div>
-          <div class="kda-column deaths">
-            <span class="kda-death-value" id="kda-deaths"
-              ><img
-                src="images/pengubear.jpeg"
-                alt="0"
-                class="idle-pengubear-death"
-            /></span>
-            <span class="kda-label">Deaths</span>
-          </div>
-          <div class="kda-column assists">
-            <span class="kda-value" id="kda-assists"
-              ><img src="images/pengubear.jpeg" alt="0" class="idle-pengubear"
-            /></span>
-            <span class="kda-label">Assists</span>
-          </div>
+        <div class="party-invitation-message">
+          <span class="party-invitation-name">Pengubear</span> has invited you
+          to a party.
         </div>
 
-        <div class="card">
-          <div class="card-header">Just for Laughs</div>
+        <div class="party-invitation-divider"></div>
 
-          <div class="short-audio-container">
-
-            <div class="short-audio">
-              <button id="ephey-laugh-button" class="short-audio-button">
-                <img
-                    src="images/audio-control-button.png"  height="24px"
-                    width="24px"
-                    alt="Ephey Laugh"
-                />
-                <span class="short-audio-text">Ephey - He-he-he-he-he</span>
-              </button>
-              <audio id="epheyLaughAudio" src="assets/ephey_laugh.mp3"></audio>
-            </div>
-
-            <div class="short-audio">
-              <button id="crybaby-button" class="short-audio-button">
-                <img
-                    src="images/audio-control-button.png"  height="24px"
-                    width="24px"
-                    alt="Crybaby"
-                />
-                <span class="short-audio-text">Crybaby</span>
-              </button>
-              <audio id="cryBabyAudio" src="assets/phone_crying.mp3"></audio>
-            </div>
-
-            <div class="short-audio">
-              <button id="sorry-button" class="short-audio-button">
-                <img
-                    src="images/audio-control-button.png"  height="24px"
-                    width="24px"
-                    alt="sorry"
-                />
-                <span class="short-audio-text">Sorry</span>
-              </button>
-              <audio id="sorryAudio" src="assets/phone_sorry.mp3"></audio>
-            </div>
-            <div class="short-audio">
-              <button id="bobian-button" class="short-audio-button">
-                <img
-                    src="images/audio-control-button.png"  height="24px"
-                    width="24px"
-                    alt="bobian"
-                />
-                <span class="short-audio-text">Bobian</span>
-              </button>
-              <audio id="bobianAudio" src="assets/bobian.mp3"></audio>
-            </div>
-            <div class="short-audio">
-              <button id="yawning-button" class="short-audio-button">
-                <img
-                    src="images/audio-control-button.png"  height="24px"
-                    width="24px"
-                    alt="yawning"
-                />
-                <span class="short-audio-text">Yawnz</span>
-              </button>
-              <audio id="yawningAudio" src="assets/yawning.mp3"></audio>
-            </div>
-            <div class="short-audio">
-              <button id="im-in-picture-button" class="short-audio-button">
-                <img
-                    src="images/audio-control-button.png"  height="24px"
-                    width="24px"
-                    alt="in-picture"
-                />
-                <span class="short-audio-text">In Picture</span>
-              </button>
-              <audio id="inPictureAudio" src="assets/im_in_the_picture.mp3"></audio>
-            </div>
-
+        <div class="party-invitation-user">
+          <div class="party-invitation-avatar">
+            <img src="assets/images/pengubear.jpg" alt="Phone" />
           </div>
-          
-
-          <div class="card-content">
-            <div class="video-container">
-              <button id="prev-button" class="side-button bkb-cursor-reverse">
-                &#9664;
-              </button>
-              <iframe
-                id="daily-dose-video"
-                src="https://clips.twitch.tv/embed?clip=AttractiveSourAlpacaBrokeBack-5HMSotgK1qZo2c1G&parent=days-since-phone-won-dota.github.io"
-                frameborder="0"
-                allowfullscreen="true"
-                scrolling="no"
-                height="378"
-                width="620"
-              ></iframe>
-              <button id="next-button" class="side-button bkb-cursor-reverse">
-                &#9654;
-              </button>
-            </div>
-          </div>
+          <div class="party-invitation-username">Pengubear</div>
         </div>
 
-        <div class="card" id="phones-friends-card">
-          <div class="card-header">Phones Friends</div>
-          <div class="card-content" id="phones-friends-card-content"></div>
+        <div class="party-invitation-actions">
+          <button class="party-btn party-btn-accept" id="party-accept">
+            ACCEPT
+          </button>
+          <button class="party-btn party-btn-decline" id="party-decline">
+            DECLINE
+          </button>
         </div>
 
-        <div class="card">
-          <div class="card-header">Top 5 Recommended Bans</div>
-          <div class="card-content"><ul id="recommended-bans"></ul></div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            Number of games Phone has lost since his last win
-          </div>
-          <div class="card-content" id="games-since-last-win"></div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">Hours/Days since phone's last win</div>
-          <div class="card-content" id="hours-since-last-win"></div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">Phone's winrate over his past 20 games</div>
-          <div class="card-content" id="last-20-games-stats"></div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            Number of TP scrolls Phone bought over the past 20 games
-          </div>
-          <div class="card-content" id="tp-scrolls-bought"></div>
+        <div class="party-invitation-options">
+          <label class="party-checkbox">
+            <input type="checkbox" />
+            <span>Block all communication from <strong>Pengubear</strong></span>
+          </label>
+          <label class="party-checkbox">
+            <input type="checkbox" />
+            <span>Block invites from players not on Friends List</span>
+          </label>
         </div>
       </div>
     </div>
 
-    <script src="js/script.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", async () => {
-        try {
-          randomizeEncouragement();
-          showOverlay();
-          hideBadges();
-          addCursorToggleListener();
-          loadVideos();
-          initShortAudios();
-          await getLastXGames();
-          await getLastXGamesTotals();
-          const top_5_recommended_bans = await getLowestWinrateHeroes();
-          const number_of_games_since_last_win = numberOfGamesSinceLastWin();
-          const hours_since_last_win = hoursSinceLastWin();
-          const number_of_wins_past_x_games = numberOfWinsPastXGames();
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-left">
+          <a href="#" class="nav-logo">
+            <img
+              src="assets/images/pengubear.jpg"
+              alt="Pengubear"
+              class="nav-logo-img"
+            />
+            <span>Pengubear</span>
+          </a>
+        </div>
 
-          // Top 5 recommended bans
-          top_5_recommended_bans.forEach((heroObj) => {
-            document.getElementById(
-              "recommended-bans"
-            ).innerHTML += `<li class="hero-list">☠️${heroObj.name}</li>`;
-          });
+        <div class="nav-right">
+          <div class="nav-menu">
+            <a href="#statistics" class="nav-link">Stats</a>
+            <a href="#winrate" class="nav-link">Friends</a>
+            <a href="#bans" class="nav-link">Bans</a>
+            <a href="#testimonials" class="nav-link">Reviews</a>
+            <a href="#clips" class="nav-link">Highlights</a>
+            <a href="#audio" class="nav-link">Soundboard</a>
+          </div>
 
-          // Games Since Last Win Card
-          const gamesCardContent = document.getElementById(
-            "games-since-last-win"
-          );
-          if (number_of_games_since_last_win === 0) {
-            gamesCardContent.innerHTML =
-              '<span class="trophy">🏆 Seems like Phone won his last game, should be got bug.</span>';
-          } else {
-            gamesCardContent.innerHTML = `<span class="skull">☠️ ${number_of_games_since_last_win}</span>`;
-          }
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle dark/light mode"
+          >
+            <span class="theme-toggle-icon theme-toggle-dark">🌙</span>
+            <span class="theme-toggle-icon theme-toggle-light">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
 
-          // Hours Since Last Win Card
-          const hoursCardContent = document.getElementById(
-            "hours-since-last-win"
-          );
-          if (hours_since_last_win <= 24) {
-            hoursCardContent.innerHTML = `<span class="skull">☠️${hours_since_last_win} hours</span>`;
-          } else {
-            const days_since_last_win = Math.round(hours_since_last_win / 24);
-            hoursCardContent.innerHTML = `<span class="skull">☠️${days_since_last_win} days</span>`;
-          }
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-avatar">
+          <img src="assets/images/pengubear.jpg" alt="Pengubear" />
+        </div>
+        <div class="hero-badge">🔴 Currently Feeding</div>
+        <h1 class="hero-title">
+          <span class="days-counter" id="days-counter">0</span>
+          <span class="hero-subtitle">Days Since Pengubear Won Dota</span>
+        </h1>
+        <p class="hero-description">
+          Tracking the legendary losing streak of the fluffiest feeder in SEA
+        </p>
+        <!-- ...existing code... -->
+      </div>
+    </section>
 
-          // Last 20 Games Stats Card
-          document.getElementById(
-            "last-20-games-stats"
-          ).innerHTML = `<span class="skull">☠️ ${number_of_wins_past_x_games} / 20</span>`;
+    <!-- Game Statistics Section -->
+    <section id="statistics" class="section statistics-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">📊 Stats</span>
+          <h2 class="section-title">Game Statistics</h2>
+          <p class="section-description">Numbers don't lie. Unfortunately.</p>
+        </div>
 
-          // Last 20 Games TP Scrolls
-          document.getElementById(
-            "tp-scrolls-bought"
-          ).innerHTML = `<span class="teleport">💨 ${getPastXGamesTPsPurchased()}</span>`;
+        <!-- Past 20 Games Statistics -->
+        <div class="stats-subsection">
+          <h3 class="stats-subtitle">
+            🔥 The Recent Tragedy
+            <span class="stats-subtitle-hint">(Last 20 Games)</span>
+          </h3>
+          <div class="kda-grid" id="kda-grid">
+            <!-- KDA cards will be populated by JS -->
+          </div>
+        </div>
 
-          generatePhonesFriendsTable();
-          updateKDARatios();
-          refreshTipCounterImage();
+        <!-- Overall Statistics -->
+        <div class="stats-subsection">
+          <h3 class="stats-subtitle">
+            🤡 Hall of Shame
+            <span class="stats-subtitle-hint">(Lifetime stats)</span>
+          </h3>
+          <div class="rank-grid" id="rank-grid">
+            <!-- Rank card will be populated by JS -->
+          </div>
+          <div class="stats-grid" id="stats-grid">
+            <!-- Stats cards will be populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
 
-          setTimeout(() => {
-            stopLoadingAnimation();
-            hideOverlay();
-            var phoneCrying = document.getElementById("cryBabyAudio");
-            phoneCrying.play();
-          }, 1690);
-          
-        } catch (error) {
-          console.error("Failed to get stats:", error);
-        }
-      });
-    </script>
-    <div class="loading-overlay" id="loadingOverlay">
-      <img src="images/pengubear.jpeg" alt="Loading" class="loading-image" />
-      <span id="loading-message" class="trophy">Did you know, by visiting this website you're giving Phone a tip?</span>
-      <audio id="tipPhone" src="assets/Ui_coins.mp3.mpeg"></audio>
-    </div>
+    <!-- Win Rate with Friends Section -->
+    <section id="winrate" class="section winrate-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">👥 Friends</span>
+          <h2 class="section-title">Win Rate with Friends</h2>
+          <p class="section-description">
+            Some friends help you win. Others... don't.
+          </p>
+        </div>
+
+        <!-- Recent friends -->
+        <div class="friends-subsection">
+          <h3 class="friends-subtitle">
+            🔥 Recent Casualties of War
+            <span class="friends-subtitle-hint">(Last 200 matches)</span>
+          </h3>
+          <div class="friends-grid" id="friends-grid-recent"></div>
+        </div>
+
+        <!-- All-time friends -->
+        <div class="friends-subsection">
+          <h3 class="friends-subtitle">
+            🏆 All-Time Squad
+            <span class="friends-subtitle-hint">(Lifetime stats)</span>
+          </h3>
+          <div class="friends-grid" id="friends-grid-alltime"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommended Hero Bans Section -->
+    <section id="bans" class="section bans-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">🚫 Bans</span>
+          <h2 class="section-title">Recommended Hero Bans</h2>
+          <p class="section-description">
+            When Phone hovers these heroes, it's time to intervene
+          </p>
+        </div>
+        <!-- Recent worst heroes -->
+        <div class="bans-subsection">
+          <h3 class="bans-subtitle">
+            🔥 Recent Trainwrecks
+            <span class="bans-subtitle-hint">(Last 100 games)</span>
+          </h3>
+          <div class="bans-grid" id="recent-bans-grid"></div>
+        </div>
+
+        <!-- All-time worst heroes -->
+        <div class="bans-subsection">
+          <h3 class="bans-subtitle">
+            ☠️ All-Time Disasters
+            <span class="bans-subtitle-hint">(More than 50 games)</span>
+          </h3>
+          <div class="bans-grid" id="bans-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">💬 Reviews</span>
+          <h2 class="section-title">Testimonials</h2>
+          <p class="section-description">What teammates are saying...</p>
+        </div>
+        <div class="testimonials-carousel" id="testimonials-carousel">
+          <!-- Testimonial cards will be populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Twitch Clips Section -->
+    <section id="clips" class="section clips-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">🎬 Highlights</span>
+          <h2 class="section-title">Twitch Clips</h2>
+          <p class="section-description">
+            Witness the moments that defined a career.
+          </p>
+        </div>
+        <div class="clips-container">
+          <!-- Main Player -->
+          <div class="clips-player">
+            <iframe id="clips-iframe" src="" allowfullscreen> </iframe>
+          </div>
+
+          <!-- Navigation Arrows + Thumbnail Strip -->
+          <div class="clips-thumbnail-wrapper">
+            <button
+              class="clips-nav-btn clips-nav-prev"
+              id="clips-prev"
+              aria-label="Previous clips"
+            >
+              ◀
+            </button>
+
+            <div class="clips-thumbnails" id="clips-thumbnails">
+              <!-- Thumbnails populated by JS -->
+            </div>
+
+            <button
+              class="clips-nav-btn clips-nav-next"
+              id="clips-next"
+              aria-label="Next clips"
+            >
+              ▶
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audio Clips Section -->
+    <section id="audio" class="section audio-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">🔊 Soundboard</span>
+          <h2 class="section-title">Audio Clips</h2>
+          <p class="section-description">
+            The sounds of victory... and mostly defeat.
+          </p>
+        </div>
+        <div class="audio-grid" id="audio-grid">
+          <!-- Audio clips will be populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <button class="tip-button" id="tip-button" aria-label="Send a tip">
+      <img
+        src="assets/images/Shards_splash.webp"
+        height="24"
+        width="24"
+        alt="Shard icon"
+        class="tip-icon"
+      />
+      <span class="tip-text">TIP</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img
+              src="assets/images/pengubear.jpg"
+              alt="Pengubear"
+              class="footer-logo-img"
+            />
+            <span>Pengubear</span>
+          </div>
+          <p class="footer-tagline">Half penguin. Half bear. Full feeder.</p>
+          <p class="footer-copyright">
+            © 2025 Days Since Pengubear Won Dota. All feeding rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/testimonials.js"></script>
+    <script src="assets/video/clips.js"></script>
+    <script src="assets/audio/clips.js"></script>
   </body>
 </html>
