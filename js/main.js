@@ -46,7 +46,30 @@ async function initApp() {
 
   initThemeToggle();
 
+  initMobileMenu();
+
   animateDaysCounter();
+
+  // Hide the Pengubear loader once everything is ready
+  hidePengubearLoader();
+}
+
+// ===== PENGUBEAR LOADER =====
+function hidePengubearLoader() {
+  const loader = document.getElementById("pengubear-loader");
+  if (loader) {
+    // Add a small delay for smooth transition
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 300);
+  }
+}
+
+function showPengubearLoader() {
+  const loader = document.getElementById("pengubear-loader");
+  if (loader) {
+    loader.classList.remove("hidden");
+  }
 }
 
 // ===== LOADING STATES =====
@@ -752,6 +775,64 @@ function initThemeToggle() {
         }
       }
     });
+}
+
+// ===== MOBILE MENU =====
+function initMobileMenu() {
+  const menuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-nav-menu");
+  const mobileOverlay = document.getElementById("mobile-nav-overlay");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+  if (!menuToggle || !mobileMenu || !mobileOverlay) return;
+
+  function openMenu() {
+    menuToggle.classList.add("active");
+    mobileMenu.classList.add("active");
+    mobileOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    menuToggle.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    mobileOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function toggleMenu() {
+    const isOpen = menuToggle.classList.contains("active");
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  // Toggle menu on button click
+  menuToggle.addEventListener("click", toggleMenu);
+
+  // Close menu when clicking overlay
+  mobileOverlay.addEventListener("click", closeMenu);
+
+  // Close menu when clicking a nav link
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close menu on window resize if screen becomes larger
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      closeMenu();
+    }
+  });
+
+  // Close menu on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuToggle.classList.contains("active")) {
+      closeMenu();
+    }
+  });
 }
 
 // ===== PARTY INVITATION =====

@@ -13,6 +13,16 @@
     />
   </head>
   <body class="invitation-pending">
+    <!-- Pengubear Loading Spinner -->
+    <div class="pengubear-loader" id="pengubear-loader">
+      <div class="pengubear-loader-avatar">
+        <div class="pengubear-loader-ring"></div>
+        <img src="assets/images/pengubear.jpg" alt="Loading..." />
+      </div>
+      <div class="pengubear-loader-text">Loading...</div>
+      <div class="pengubear-loader-subtext">Preparing the feed...</div>
+    </div>
+
     <!-- Party Invitation Audio -->
     <audio id="party-invitation-sound" preload="auto">
       <source
@@ -78,6 +88,19 @@
       </div>
     </div>
 
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-menu" id="mobile-nav-menu">
+      <a href="#statistics" class="mobile-nav-link">Stats</a>
+      <a href="#winrate" class="mobile-nav-link">Friends</a>
+      <a href="#bans" class="mobile-nav-link">Bans</a>
+      <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+      <a href="#clips" class="mobile-nav-link">Highlights</a>
+      <a href="#audio" class="mobile-nav-link">Soundboard</a>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
@@ -101,6 +124,16 @@
             <a href="#clips" class="nav-link">Highlights</a>
             <a href="#audio" class="nav-link">Soundboard</a>
           </div>
+
+          <button
+            class="mobile-menu-toggle"
+            id="mobile-menu-toggle"
+            aria-label="Toggle mobile menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
           <button
             class="theme-toggle"
